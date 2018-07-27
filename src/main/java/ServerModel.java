@@ -168,10 +168,14 @@ public class ServerModel {
 
         try {
             outputBuilder = new StringBuilder("");
-            outputBuilder.append("HTTP/1.1 200 OK\nContent-Type: text/html\r\n\n");
+            outputBuilder.append("HTTP/1.1 200 OK\nContent-Type: text/html; charset=utf-8\r\n\n");
             char [] buffor = new char[4096];
             new FileReader(new File("F:/WORK/ServerApplication/src/main/webapp/index.jsp")).read(buffor) ;
             outputBuilder.append(buffor);
+            outputBuilder.append("\n<br>Twoje IP "+connection.getInetAddress().getHostAddress());
+            outputBuilder.append("\n<br>Twoj HOST Name "+connection.getInetAddress().getHostName());
+            outputBuilder.append("\n<br>Twoj port "+ connection.getPort());
+
             outputStreamWriter.write(outputBuilder.toString());
             outputStreamWriter.flush();
 
